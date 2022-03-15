@@ -14,13 +14,44 @@
 
 <body>
 
-    <div id="root" class="column">
-        <header></header>
-        <div class="wrapper row">
-            <div class="contact-list">sd</div>
-            <div class="msg-list">sd</div>
-        </div>
+    <div id="root" class="row">
+        <div class="contacts column">
+            <div class="user-profile-header row">
+                <div class="avatar row">
+                    <img src="img/avatar_io.jpg" alt="">
+                    <p class="contact-name">Sofia</p>
+                </div>
+                <div class="user-profile-icons row">
+                    <i class="fa-solid fa-circle-notch"></i>
+                    <i class="fa-solid fa-message"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+            <div class="alert-new-msg row">
+                <div class="bell"></div>
+                <div>
+                    <p>Ricevi notifiche di nuovi messaggi</p>
+                    <a href="#">Attiva notifiche desktop</a>
+                </div>
+            </div>
+            <div class="filter">Cerca o inizia una nuova chat</div>
+            <ul class="contact-list">
+                <li class="contact row" >
+                    <div class="row">
+                        <img src="img/avatar_1.jpg" alt="">
+                        <div>
+                            <p class="contact-name">Michele</p>
+                            <p class="contact-state">Ultimo messaggio inviato</p>
+                        </div>
+                    </div>
 
+                    <time>12:00</time>
+                </li>
+            </ul>
+        </div>
+        <div class="msg column">
+            <div class="user-selected-header"></div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
