@@ -15,7 +15,10 @@
 <body>
 
     <div id="root" class="row">
+        <!-- colonna contatti -->
         <div class="contacts column">
+
+            <!-- intestazione utente -->
             <div class="header row">
                 <div class="avatar row">
                     <img :src="'img/' + user.avatar" :alt="user.name">
@@ -27,6 +30,9 @@
                     <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>
             </div>
+            <!-- / -->
+
+            <!-- richiesta notifiche -->
             <div class="alert-new-msg row">
                 <div class="bell"></div>
                 <div>
@@ -34,8 +40,14 @@
                     <a href="#">Attiva notifiche desktop</a>
                 </div>
             </div>
+            <!-- / -->
+
+            <!-- filtro contatti -->
             <div class="filter">Cerca o inizia una nuova chat</div>
-            <ul class="contact-list">
+            <!-- / -->
+
+            <!-- lista contatti -->
+            <ul>
                 <li class="row" v-for="contact in directory">
                     <div class="row">
                         <img :src="'img/' + contact.avatar" :alt="contact.name">
@@ -48,8 +60,14 @@
                     <time>{{ contact.lastActivityTime }}</time>
                 </li>
             </ul>
+            <!-- / -->
         </div>
+        <!-- / -->
+
+        <!-- colonna messaggi -->
         <div class="msg column">
+
+            <!-- intestazione utente selezionato -->
             <div class="header row">
                 <div class="avatar row">
                     <img src="img/avatar_1.jpg" alt="">
@@ -64,7 +82,9 @@
                     <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>
             </div>
+            <!-- / -->
 
+            <!-- elenco messaggi -->
             <div class="msg-list column">
                 <div class="msg-txt contact-msg">
                     <p>Hai portato a spasso il cane?</p>
@@ -76,13 +96,18 @@
                 </div>
 
             </div>
+            <!-- / -->
 
+            <!-- inserimento nuovo messaggio -->
             <div class="input-wrapper row">
                 <button><i class="fa-regular fa-face-smile"></i></button>
                 <input type="text" id="inputMsg" placeholder="Scrivi un messaggio">
                 <button><i class="fa-solid fa-microphone"></i></button>
             </div>
+            <!-- / -->
         </div>
+        <!-- / -->
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
