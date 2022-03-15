@@ -21,7 +21,7 @@ body {
 }
 
 #root {
-    max-width: 1540px;
+    max-width: 1024px;
     margin: 0 auto;
     height: calc(100vh - 4rem);
 }
@@ -73,13 +73,8 @@ img {
 
 .contacts {
     background-color: #fff;
-    width: 540px;
+    width: 400px;
     overflow-y: scroll;
-}
-
-.contacts .contact {
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
 }
 
 .contacts time {
@@ -110,6 +105,7 @@ img {
     background-color: #fff;
     text-align: center;
     line-height: 3rem;
+    flex-shrink: 0;
 }
 
 .contacts .alert-new-msg .bell::before {
@@ -135,6 +131,16 @@ img {
     margin-right: 1rem;
 }
 
+.contacts li {
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+}
+
+.contacts li:hover {
+    background-color: #E9EBEB;
+    cursor: pointer;
+}
+
 
 
 
@@ -144,7 +150,6 @@ img {
 .msg {
     background-image: url('../img/mine.jpg');
     flex-grow: 1;
-
 }
 
 .msg-list {
