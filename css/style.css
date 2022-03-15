@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+    background-color: ;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    min-width: 600px;
+    margin: 0 auto;
+    height: calc(100vh - 4rem);
+}
+
+header {
+    background-color: brown;
+    height: 80px;
+}
+
+.wrapper {
+    flex-grow: 1;
+}
+
+.contact-list {
+    background-color: aqua;
+    width: 300px;
+}
+
+.msg-list {
+    background-color: blueviolet;
+    flex-grow: 1;
+}
