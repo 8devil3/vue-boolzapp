@@ -16,15 +16,15 @@
 
     <div id="root" class="row">
         <div class="contacts column">
-            <div class="user-profile-header row">
+            <div class="header row">
                 <div class="avatar row">
-                    <img :src="'img/' + user.avatar" alt="user.name">
-                    <p class="contact-name">Sofia</p>
+                    <img :src="'img/' + user.avatar" :alt="user.name">
+                    <p class="contact-name">{{ user.name }}</p>
                 </div>
-                <div class="user-profile-icons row">
-                    <i class="fa-solid fa-circle-notch"></i>
-                    <i class="fa-solid fa-message"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                <div class="header-icons row">
+                    <button><i class="fa-solid fa-circle-notch"></i></button>
+                    <button><i class="fa-solid fa-message"></i></button>
+                    <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>
             </div>
             <div class="alert-new-msg row">
@@ -50,7 +50,38 @@
             </ul>
         </div>
         <div class="msg column">
-            <div class="user-selected-header"></div>
+            <div class="header row">
+                <div class="avatar row">
+                    <img src="img/avatar_1.jpg" alt="">
+                    <div>
+                        <p class="contact-name">Michele</p>
+                        <p class="contact-state">Ultimo accesso oggi alle 12:00</p>
+                    </div>
+                </div>
+                <div class="header-icons row">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button><i class="fa-solid fa-paperclip"></i></button>
+                    <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+            </div>
+
+            <div class="msg-list column">
+                <div class="msg-txt contact-msg">
+                    <p>Hai portato a spasso il cane?</p>
+                    <time>15:30</time>
+                </div>
+                <div class="msg-txt user-msg">
+                    <p>Tutto fatto!</p>
+                    <time>16:15</time>
+                </div>
+
+            </div>
+
+            <div class="input-wrapper row">
+                <button><i class="fa-regular fa-face-smile"></i></button>
+                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio">
+                <button><i class="fa-solid fa-microphone"></i></button>
+            </div>
         </div>
     </div>
 

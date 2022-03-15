@@ -26,38 +26,41 @@ body {
     height: calc(100vh - 4rem);
 }
 
-.contacts {
-    background-color: #fff;
-    width: 540px;
-    overflow-y: scroll;
+button {
+    border: 0;
+    background-color: transparent;
+    display: block;
+    cursor: pointer;
 }
 
-.contacts img {
+img {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
     margin-right: 0.5rem;
 }
 
-.user-profile-header {
+
+
+
+
+
+.header {
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: #EAEAEA;
 }
 
-.user-profile-header .avatar {
+.header .avatar {
     align-items: center;
 }
 
-.user-profile-icons {
+.header-icons button {
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
     color: #b1b1b1;
-}
-
-.user-profile-icons i {
     margin-left: 1rem;
 }
 
@@ -67,9 +70,16 @@ body {
 
 
 
+
+.contacts {
+    background-color: #fff;
+    width: 540px;
+    overflow-y: scroll;
+}
+
 .contacts .contact {
     justify-content: space-between;
-    padding: 1rem 1.2rem;
+    padding: 1rem 1.5rem;
 }
 
 .contacts time {
@@ -77,7 +87,7 @@ body {
     color: #b1b1b1;
 }
 
-.contacts .contact-state {
+.contact-state {
     font-size: 0.8rem;
     color: #b1b1b1;
     margin-top: 0.2rem;
@@ -111,7 +121,7 @@ body {
 }
 
 .contacts .filter {
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-size: 0.8rem;
     color: #b1b1b1;
 }
@@ -134,5 +144,58 @@ body {
 .msg {
     background-image: url('../img/mine.jpg');
     flex-grow: 1;
+
+}
+
+.msg-list {
     overflow-y: scroll;
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.msg .input-wrapper {
+    background-color: #fff;
+    padding: 1rem;
+    height: 4.5rem;
+    align-items: center;
+}
+
+.msg input {
+    margin: 0.5rem;
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 0;
+}
+
+.msg .input-wrapper button {
+    padding: 1rem;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    color: #b1b1b1;
+}
+
+.msg .msg-txt {
+    padding: 1rem 3rem 1rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px 4px #00000008;
+    margin: 0.5rem;
+    width: fit-content;
+    position: relative;
+}
+
+.msg .msg-txt time {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.5rem;
+    font-size: 0.7em;
+    color: #b1b1b1;
+}
+
+.msg .user-msg {
+    background-color: #fff;
+}
+
+.msg .contact-msg {
+    background-color: #D5F9BA;
+    align-self: end;
 }
