@@ -11,6 +11,8 @@ body {
     background: linear-gradient(#009688 0 20%, #D9DBD5 20% 100%);
 }
 
+/* stili comuni */
+
 .row {
     display: flex;
 }
@@ -43,7 +45,7 @@ img {
 
 
 
-
+/* intestazioni */
 
 .header {
     justify-content: space-between;
@@ -69,7 +71,7 @@ img {
 
 
 
-
+/* colonna contatti */
 
 .contacts {
     background-color: #fff;
@@ -119,13 +121,15 @@ img {
     padding: 1rem 2.5rem;
     font-size: 0.8rem;
     color: #b1b1b1;
+    align-items: center;
+}
+.contacts .filter input {
+    border: 0;
+    flex-grow: 1;
+    padding: 0.2rem;
 }
 
-.contacts .filter::before {
-    content: '\f002';
-    font-family: 'Font Awesome 6 Free';
-    font-size: 1rem;
-    font-weight: 900;
+.contacts .filter button {
     color: #b1b1b1;
     margin-right: 1rem;
 }
@@ -148,7 +152,7 @@ img {
 
 
 
-
+/* colonna messaggi */
 
 .msg {
     background-image: url('../img/mine.jpg');
