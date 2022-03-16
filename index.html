@@ -90,7 +90,7 @@
             <!-- elenco messaggi -->
             <div class="msg-list column">
 
-                <div class="msg-txt contact-msg" v-for="msg in chatSelected" :class="msg.type=='in' ? 'in' : 'out'">
+                <div class="msg-txt contact-msg column" v-for="msg in chatSelected" :class="msg.type=='in' ? 'in' : 'out'">
                     <p>{{ msg.text }}</p>
                     <time>{{ formatDate(msg.dateTime) }}</time>
                 </div>

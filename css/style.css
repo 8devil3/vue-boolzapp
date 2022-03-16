@@ -167,7 +167,7 @@ img {
 .msg-list {
     overflow-y: scroll;
     flex-grow: 1;
-    padding: 1rem;
+    padding: 3rem;
 }
 
 .msg .input-wrapper {
@@ -192,24 +192,24 @@ img {
 }
 
 .msg .msg-txt {
-    padding: 1rem 3rem 1rem 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 4px 4px #00000008;
     margin: 0.5rem;
-    width: fit-content;
+    min-width: 30%;
     position: relative;
 }
 
 .msg .msg-txt time {
-    position: absolute;
-    bottom: 0.25rem;
-    right: 0.5rem;
     font-size: 0.7em;
     color: #b1b1b1;
+    align-self: end;
+    margin-top: 0.3rem;
 }
 
 .msg .in {
     background-color: #fff;
+    align-self: start;
 }
 
 .msg .out {
