@@ -208,11 +208,11 @@ img {
     color: #b1b1b1;
 }
 
-.msg .out {
+.msg .in {
     background-color: #fff;
 }
 
-.msg .in {
+.msg .out {
     background-color: #D5F9BA;
     align-self: end;
 }

@@ -56,7 +56,7 @@
                         <img :src="'img/' + contact.avatar" :alt="contact.name">
                         <div>
                             <p class="contact-name">{{ contact.name }}</p>
-                            <p class="contact-last-msg">{{ contact.lastActivity }}</p>
+                            <p class="contact-last-msg">Ultimo messaggio</p>
                         </div>
                     </div>
 
@@ -99,10 +99,14 @@
             <!-- / -->
 
             <!-- inserimento nuovo messaggio -->
-            <div class="input-wrapper row">
+            <div v-if="selected != null" class="input-wrapper row" id="inputNewMsg">
+
                 <button><i class="fa-regular fa-face-smile"></i></button>
-                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio">
+
+                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model="sentMsg" @keyup.enter="sendMsg(sentMsg, inputID)">
+
                 <button><i class="fa-solid fa-microphone"></i></button>
+
             </div>
             <!-- / -->
         </div>

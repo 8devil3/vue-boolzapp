@@ -11,6 +11,8 @@ const app = new Vue({
         chat: [],
         selected: null,
         chatSelected: [],
+        sentMsg: '',
+        inputID: null,
     },
     methods: {
         filterList(filteredInput) { //filtro dei contatti
@@ -25,14 +27,37 @@ const app = new Vue({
         getSelectedContact(i){
             this.selected = i;
         },
-        getChat(i){
+        getChat(id){
             this.chatSelected = this.chat.filter(msg => {
-                if(msg.idChat == i){
-                    return msg.text;
-                }
+                return msg.idChat == id;
             }).sort((a, b) => {
                 return new Date(a.dateTime) - new Date(b.dateTime)
-              });
+            });
+            
+            return this.inputID = id;
+        },
+        sendMsg(txt, id){
+            this.chat.push({
+                idChat: id,
+                type: 'out',
+                text: txt,
+                dateTime: luxon.DateTime.now(),
+            });
+            this.getChat(id);
+            this.sentMsg = '';
+
+            setTimeout(() => {
+                this.receivedMsg(id);
+            }, 1000);
+        },
+        receivedMsg(id){
+            this.chat.push({
+                idChat: id,
+                type: 'in',
+                text: 'ok',
+                dateTime: luxon.DateTime.now(),
+            });
+            this.getChat(id);
         },
         formatDate(dt){
             return luxon.DateTime.fromISO(dt).toRelativeCalendar();
@@ -54,5 +79,5 @@ const app = new Vue({
     },
     created() {
         this.getData();
-    }
+    },
 });
