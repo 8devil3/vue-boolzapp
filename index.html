@@ -45,22 +45,22 @@
             <!-- filtro contatti -->
             <div class="filter row">
                 <button id="btnFilter"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <input type="text" id="input-filter" placeholder="Cerca o inizia una nuova chat" v-model.trim="filteredInput">
+                <input type="text" id="input-filter" placeholder="Cerca o inizia una nuova chat" v-model.trim="searchContact">
             </div>
             <!-- / -->
 
             <!-- lista contatti -->
             <ul>
-                <li class="row" v-for="(contact, index) in filterList(filteredInput)" @click="getSelectedContact(index), getChat(contact.id)" :class="{'contact-active':selected==index}">
+                <li class="row" v-for="(contact, index) in filterList(searchContact)" @click="activeIndexContact = index, contactId = contact.id, getChat(contact.id)" :class="{'contact-active':activeIndexContact == index}">
                     <div class="row">
                         <img :src="'img/' + contact.avatar" :alt="contact.name">
                         <div>
                             <p class="contact-name">{{ contact.name }}</p>
-                            <p class="contact-last-msg">Ultimo messaggio</p>
+                            <p class="contact-last-msg">{{ contact.message[contact.message.length -1].text }}</p>
                         </div>
                     </div>
 
-                    <time>{{ contact.lastActivityTime }}</time>
+                    <time>12:00</time>
                 </li>
             </ul>
             <!-- / -->
@@ -71,12 +71,12 @@
         <div class="msg column">
 
             <!-- intestazione utente selezionato -->
-            <div class="header row">
+            <div v-if="activeIndexContact != null" class="header row">
                 <div class="avatar row">
-                    <img src="img/avatar_1.jpg" alt="">
+                    <img :src="'img/' + directory[activeIndexContact].avatar" :alt="directory[activeIndexContact].name">
                     <div>
-                        <p class="contact-name">Michele</p>
-                        <p class="contact-last-msg">Ultimo accesso oggi alle 12:00</p>
+                        <p class="contact-name"></p>
+                        <p class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
                     </div>
                 </div>
                 <div class="header-icons row">
@@ -85,29 +85,33 @@
                     <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>
             </div>
+
+            <div v-else class="header row"></div>
             <!-- / -->
 
             <!-- elenco messaggi -->
-            <div class="msg-list column">
+            <div v-if="activeIndexContact != null" class="msg-list column">
 
-                <div class="msg-txt contact-msg column" v-for="msg in chatSelected" :class="msg.type=='in' ? 'in' : 'out'">
+                <div class="msg-txt contact-msg column" v-for="msg in directory[activeIndexContact].message" :class="msg.type == 'in' ? 'in' : 'out'">
                     <p>{{ msg.text }}</p>
                     <time>{{ formatDate(msg.dateTime) }}</time>
                 </div>
 
             </div>
+            <div v-else class="msg-list column"></div>
             <!-- / -->
 
             <!-- inserimento nuovo messaggio -->
-            <div v-if="selected != null" class="input-wrapper row" id="inputNewMsg">
+            <div v-if="activeIndexContact != null" class="input-wrapper row">
 
                 <button><i class="fa-regular fa-face-smile"></i></button>
 
-                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model="sentMsg" @keyup.enter="sendMsg(sentMsg, inputID)">
+                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model="sentMsg" @keyup.enter="sendMsg(sentMsg, activeIndexContact, contactId)">
 
                 <button><i class="fa-solid fa-microphone"></i></button>
 
             </div>
+            <div v-else class="input-wrapper row"></div>
             <!-- / -->
         </div>
         <!-- / -->
@@ -116,7 +120,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js"></script>
-    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
 </body>
 
