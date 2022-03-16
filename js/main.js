@@ -32,6 +32,12 @@ const app = new Vue({
                 }
             });
         },
+        formatDate(dt){
+            return luxon.DateTime.fromISO(dt).toFormat('dd/mm/yyyy');
+        },
+        formatTime(dt){
+            return luxon.DateTime.fromISO(dt).toFormat('HH:mm');
+        },
         getData(){ //recupero i dati degli utenti
 
             contacts.forEach(element => {
