@@ -2,9 +2,8 @@ const app = new Vue({
     el: "#root",
     data: {
         searchContact: '',
-        activeIndexContact: 0,
+        activeIndexContact: null,
         contactId: null,
-        lastMsgTime: null,
         sentMsg: '',
         user: {
             id: 'A1',
@@ -256,7 +255,7 @@ const app = new Vue({
             }
         },
 
-        getChat(id){
+        getChat(id){ //recupero la chat del contatto attivo
             return this.directory.filter(msg => {
                 return msg.id == id;
             }).sort((a, b) => {
@@ -264,7 +263,7 @@ const app = new Vue({
             });
         },
         
-        getLastMsg(){
+        sortMsg(){ //riordino i messaggi per data
             this.directory.forEach(element => {
                 element.message.sort((a, b) => {
                     return new Date(a.dateTime) - new Date(b.dateTime)
@@ -272,11 +271,11 @@ const app = new Vue({
             });
         },
         
-        getLastMsgTime(indx){
+        getLastMsgTime(indx){ //recupero data/ora dell'ultimo messaggo del contatto selezionato
             return this.directory[indx].message[this.directory[indx].message.length - 1].dateTime;
         },
 
-        sendMsg(txt, indx, id){
+        sendMsg(txt, indx, id){ //invio messaggio
             this.directory[indx].message.push({
                 id: id,
                 type: 'out',
@@ -287,12 +286,12 @@ const app = new Vue({
             this.getChat(id);
             this.sentMsg = '';
 
-            setTimeout(() => {
+            setTimeout(() => { //timeout risposta automatica
                 this.receivedMsg(indx, id);
             }, 1000);
         },
 
-        receivedMsg(indx, id){
+        receivedMsg(indx, id){ //risposta automatica
             this.directory[indx].message.push({
                 id: id,
                 type: 'in',
@@ -303,12 +302,12 @@ const app = new Vue({
             this.getChat(id);
         },
 
-        formatDate(dt){
+        formatDate(dt){ //formatto data/ora con luxon
             let relDateAndTime = luxon.DateTime.fromISO(dt);
             return relDateAndTime.toRelativeCalendar() + ' alle ' + relDateAndTime.toFormat('HH:mm');
         },
     },
-    created() {
-        this.getLastMsg();
+    created() { //l'app inizia riordinando i messaggi per data/ora
+        this.sortMsg();
     }
 });
