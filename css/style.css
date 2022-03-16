@@ -28,6 +28,7 @@ body {
 
 #root {
     max-width: 1024px;
+    min-width: 768px;
     margin: 0 auto;
     height: calc(100vh - 4rem);
 }
@@ -81,6 +82,7 @@ img {
 .contacts {
     background-color: #fff;
     width: 400px;
+    flex-shrink: 0;
 }
 
 .contact-name {
@@ -220,4 +222,15 @@ img {
 .msg .out {
     background-color: #D5F9BA;
     align-self: end;
+}
+
+.msg .empty-msg {
+    text-align: center;
+    color: #999;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: auto;
+    padding: 1rem;
+    background-color: #cccccc80;
+    border-radius: 500px;
 }
