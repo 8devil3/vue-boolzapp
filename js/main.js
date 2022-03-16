@@ -30,7 +30,9 @@ const app = new Vue({
                 if(msg.idChat == i){
                     return msg.text;
                 }
-            });
+            }).sort((a, b) => {
+                return new Date(a.dateTime) - new Date(b.dateTime)
+              });
         },
         formatDate(dt){
             return luxon.DateTime.fromISO(dt).toRelativeCalendar();
