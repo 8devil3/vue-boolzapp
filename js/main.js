@@ -33,7 +33,7 @@ const app = new Vue({
             });
         },
         formatDate(dt){
-            return luxon.DateTime.fromISO(dt).toFormat('dd/mm/yyyy');
+            return luxon.DateTime.fromISO(dt).toFormat('dd/MM/yyyy HH:mm');
         },
         formatTime(dt){
             return luxon.DateTime.fromISO(dt).toFormat('HH:mm');
