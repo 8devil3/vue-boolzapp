@@ -45,18 +45,18 @@
             <!-- filtro contatti -->
             <div class="filter row">
                 <button id="btnFilter"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <input type="text" id="input-filter" placeholder="Cerca o inizia una nuova chat">
+                <input type="text" id="input-filter" placeholder="Cerca o inizia una nuova chat" v-model.trim="filteredInput">
             </div>
             <!-- / -->
 
             <!-- lista contatti -->
             <ul>
-                <li class="row" v-for="contact in directory">
+                <li class="row" v-for="(contact, index) in filterList(filteredInput)" @click="getSelectedContact(index), getChat(contact.id)" :class="{'contact-active':selected==index}">
                     <div class="row">
                         <img :src="'img/' + contact.avatar" :alt="contact.name">
                         <div>
                             <p class="contact-name">{{ contact.name }}</p>
-                            <p class="contact-state">{{ contact.lastActivity }}</p>
+                            <p class="contact-last-msg">{{ contact.lastActivity }}</p>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                     <img src="img/avatar_1.jpg" alt="">
                     <div>
                         <p class="contact-name">Michele</p>
-                        <p class="contact-state">Ultimo accesso oggi alle 12:00</p>
+                        <p class="contact-last-msg">Ultimo accesso oggi alle 12:00</p>
                     </div>
                 </div>
                 <div class="header-icons row">
@@ -89,13 +89,10 @@
 
             <!-- elenco messaggi -->
             <div class="msg-list column">
-                <div class="msg-txt contact-msg">
-                    <p>Hai portato a spasso il cane?</p>
-                    <time>15:30</time>
-                </div>
-                <div class="msg-txt user-msg">
-                    <p>Tutto fatto!</p>
-                    <time>16:15</time>
+
+                <div class="msg-txt contact-msg" v-for="msg in chatSelected" :class="msg.type=='in' ? 'in' : 'out'">
+                    <p>{{ msg.text }}</p>
+                    <time>{{ msg.dateTime }}</time>
                 </div>
 
             </div>
@@ -114,6 +111,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
 </body>
 

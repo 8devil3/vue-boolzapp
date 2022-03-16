@@ -1,3 +1,5 @@
+/* CSS reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +10,10 @@ body {
     font-size: 16px;
     font-family: 'Segoe UI', sans-serif;
     padding: 2rem;
-    background: linear-gradient(#009688 0 20%, #D9DBD5 20% 100%);
+    background: linear-gradient(#009688 0 16%, #D9DBD5 16% 100%);
 }
+
+
 
 /* stili comuni */
 
@@ -83,7 +87,7 @@ img {
     color: #b1b1b1;
 }
 
-.contact-state {
+.contact-last-msg {
     font-size: 0.8rem;
     color: #b1b1b1;
     margin-top: 0.2rem;
@@ -136,6 +140,7 @@ img {
 
 .contacts ul {
     overflow-y: scroll;
+    flex-grow: 1;
 }
 
 .contacts li {
@@ -143,7 +148,7 @@ img {
     padding: 1rem 1.5rem;
 }
 
-.contacts li:hover {
+.contacts li:hover, .contact-active {
     background-color: #E9EBEB;
     cursor: pointer;
 }
@@ -172,7 +177,7 @@ img {
     align-items: center;
 }
 
-.msg input {
+.msg .input-wrapper input {
     margin: 0.5rem;
     flex-grow: 1;
     padding: 0.5rem;
@@ -203,11 +208,11 @@ img {
     color: #b1b1b1;
 }
 
-.msg .user-msg {
+.msg .out {
     background-color: #fff;
 }
 
-.msg .contact-msg {
+.msg .in {
     background-color: #D5F9BA;
     align-self: end;
 }

@@ -1,68 +1,50 @@
 const app = new Vue({
     el: "#root",
     data: {
+        filteredInput: '',
         user: {
+            id: 'A1',
             name: "Sofia",
             avatar: "avatar_io.jpg",
         },
-        directory: [
-            {
-                id: 10,
-                name: "Michele",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "12:00",
-                avatar: "avatar_1.jpg",
-            },
-            {
-                id: 20,
-                name: "Fabio",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "12:00",
-                avatar: "avatar_2.jpg",
-            },
-            {
-                id: 30,
-                name: "Samuele",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "14:00",
-                avatar: "avatar_3.jpg",
-            },
-            {
-                id: 40,
-                name: "Aessandro B.",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "12:00",
-                avatar: "avatar_4.jpg",
-            },
-            {
-                id: 50,
-                name: "Alessandro L.",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "12:00",
-                avatar: "avatar_5.jpg",
-            },
-            {
-                id: 60,
-                name: "Claudia",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "15:00",
-                avatar: "avatar_6.jpg",
-            },
-            {
-                id: 70,
-                name: "Federico",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "12:00",
-                avatar: "avatar_7.jpg",
-            },
-            {
-                id: 80,
-                name: "Davide",
-                lastActivity: "Ultimo messaggio inviato",
-                lastActivityTime: "18:00",
-                avatar: "avatar_8.jpg",
-            },
-        ],
+        directory: [],
+        chat: [],
+        selected: null,
+        chatSelected: [],
     },
-    methods: {},
+    methods: {
+        filterList(filteredInput) { //filtro dei contatti
+            if (filteredInput == ''){
+                return this.directory;
+            } else {
+                return this.directory.filter(contact => {
+                    return contact.name.toLowerCase().match(filteredInput.toLowerCase());
+                });
+            }
+        },
+        getSelectedContact(i){
+            this.selected = i;
+        },
+        getChat(i){
+            this.chatSelected = this.chat.filter(msg => {
+                if(msg.idChat == i){
+                    return msg.text;
+                }
+            });
+        },
+        getData(){ //recupero i dati degli utenti
+
+            contacts.forEach(element => {
+                this.directory.push(element);
+            });
+
+            msg.forEach(element => {
+                this.chat.push(element);
+            });
+        },
+
+    },
+    created() {
+        this.getData();
+    }
 });
