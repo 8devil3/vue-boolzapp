@@ -300,9 +300,9 @@ const app = new Vue({
             return this.directory[indx].message[this.directory[indx].message.length - 1].dateTime;
         },
 
-        sendMsg(txt, indx, id){ //invio messaggio
+        sendMsg(txt, indx){ //invio messaggio
             this.directory[indx].message.push({
-                id: id,
+                idMsg: this.randomId(12),
                 type: 'out',
                 text: txt,
                 dateTime: luxon.DateTime.now(),
@@ -311,13 +311,13 @@ const app = new Vue({
             this.sentMsg = '';
 
             setTimeout(() => { //timeout risposta automatica
-                this.receivedMsg(indx, id);
+                this.receivedMsg(indx);
             }, 2000);
         },
 
-        receivedMsg(indx, id){ //risposta automatica
+        receivedMsg(indx){ //risposta automatica
             this.directory[indx].message.push({
-                id: id,
+                idMsg: this.randomId(12),
                 type: 'in',
                 text: 'ok',
                 dateTime: luxon.DateTime.now(),
