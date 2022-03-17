@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-#root {
+:root {
     --body-bkg-1: #D9DBD4;
     --body-bkg-2: #009688;
     --div-bkg: #fff;
@@ -24,7 +24,7 @@
     --input-placeholder: #333;
 }
 
-#root.dark-mode {
+:root.dark-mode {
     --body-bkg-1: #666;
     --body-bkg-2: #2c615c;
     --div-bkg: #333;
@@ -42,7 +42,7 @@
     --input-placeholder: #eee;
 }
 
-#root {
+:root {
     font-size: 16px;
     font-family: 'Segoe UI', sans-serif;
     padding: 2rem;
@@ -126,7 +126,6 @@ img {
     box-shadow: 0 0 4px 4px #00000008;
     cursor: pointer;
 }
-
 
 
 

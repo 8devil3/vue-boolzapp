@@ -13,9 +13,8 @@
 </head>
 
 <body>
-    <div id="root" :class="{'dark-mode':isDarkMode}">
 
-    <main class="row">
+    <main id="app" class="row">
         <!-- colonna contatti -->
         <div class="contacts column">
 
@@ -26,7 +25,11 @@
                     <p class="contact-name">{{ user.name }}</p>
                 </div>
                 <div class="header-icons row">
-                    <button @click="isDarkMode=!isDarkMode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button @click="setFontSize('small')" style="font-size: 13px">A</button>
+                    <button @click="setFontSize('default')" style="font-size: 16px">A</button>
+                    <button @click="setFontSize('large')" style="font-size: 20px">A</button>
+
+                    <button @click="setDarkMode"><i class="fa-solid fa-circle-half-stroke"></i></button>
                     <button><i class="fa-solid fa-message"></i></button>
                     <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>

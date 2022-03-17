@@ -1,5 +1,5 @@
 const app = new Vue({
-    el: "#root",
+    el: "#app",
     data: {
         searchContact: '',
         activeIndexContact: null,
@@ -7,7 +7,7 @@ const app = new Vue({
         contactId: null,
         isNewMsgEmpty: false,
         btnDeleteChat: false,
-        isDarkMode: false,
+        root: null,
         user: {
             id: 'A1',
             name: "Sofia",
@@ -366,6 +366,27 @@ const app = new Vue({
             }
         },
 
+        setDarkMode(){
+            this.root.classList.toggle('dark-mode')
+        },
+
+        setFontSize(fs) {
+
+            switch (fs) {
+                case 'small':
+                    this.root.style.fontSize = '13px';
+                    break;
+            
+                case 'default':
+                    this.root.style.fontSize = '16px';
+                    break;
+
+                case 'large':
+                    this.root.style.fontSize = '18px';
+                    break;
+            }
+        },
+
         randomId(ds){ //generazione casuale di ID
             const hexArr = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
             let newID = [];
@@ -396,5 +417,8 @@ const app = new Vue({
     created() { //l'app inizia riordinando i messaggi per data/ora
         this.sortMsg();
         this.setRandomId();
+    },
+    mounted() {
+        this.root = document.documentElement;
     }
 });
