@@ -7,6 +7,7 @@ const app = new Vue({
         contactId: null,
         isNewMsgEmpty: false,
         btnDeleteChat: false,
+        isDarkMode: false,
         user: {
             id: 'A1',
             name: "Sofia",

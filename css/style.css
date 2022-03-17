@@ -6,11 +6,48 @@
     box-sizing: border-box;
 }
 
-body {
+#root {
+    --body-bkg-1: #D9DBD4;
+    --body-bkg-2: #009688;
+    --div-bkg: #fff;
+    --txt-primary: #333;
+    --txt-secondary: #999;
+    --icon: #b1b1b1;
+    --li-hover: #E9EBEB;
+    --header-bkg: #eaeaea;
+    --alert: #8EDAFC;
+    --bell: #fff;
+    --msg-out: #D5F9BA;
+    --msg-in: #fff;
+    --msg-bkg: url('../img/mine.jpg');
+    --input-bkg: #fff;
+    --input-placeholder: #333;
+}
+
+#root.dark-mode {
+    --body-bkg-1: #666;
+    --body-bkg-2: #2c615c;
+    --div-bkg: #333;
+    --txt-primary: #eee;
+    --txt-secondary: #b1b1b1;
+    --icon: #ccc;
+    --li-hover: #666;
+    --header-bkg: #4d4d4d;
+    --alert: #45788f;
+    --bell: #eee;
+    --msg-out: #749958;
+    --msg-in: #b1b1b1;
+    --msg-bkg: #666;
+    --input-bkg: #333;
+    --input-placeholder: #eee;
+}
+
+#root {
     font-size: 16px;
     font-family: 'Segoe UI', sans-serif;
     padding: 2rem;
-    background: linear-gradient(#009688 0 16%, #D9DBD5 16% 100%);
+    background: linear-gradient(var(--body-bkg-2) 0 16%, var(--body-bkg-1) 16% 100%);
+    color: var(--txt-primary);
 }
 
 ul {
@@ -30,7 +67,7 @@ ul {
     flex-direction: column;
 }
 
-#root {
+main {
     max-width: 1024px;
     min-width: 768px;
     margin: 0 auto;
@@ -60,7 +97,7 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 1rem;
-    background-color: #EAEAEA;
+    background-color: var(--header-bkg);
     height: 4rem;
     position: relative;
 }
@@ -73,7 +110,7 @@ img {
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
-    color: #b1b1b1;
+    color: var(--icon);
     padding: 0.5rem;
 }
 
@@ -81,8 +118,8 @@ img {
     position: absolute;
     right: 2.5rem;
     top: 1.2rem;
-    background-color: #fff;
-    color: #333;
+    background-color: var(--div-bkg);
+    color: var(--txt);
     font-size: 0.8rem;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -99,7 +136,7 @@ img {
 /* colonna contatti */
 
 .contacts {
-    background-color: #fff;
+    background-color: var(--div-bkg);
     width: 400px;
     flex-shrink: 0;
 }
@@ -110,17 +147,17 @@ img {
 
 .contacts time {
     font-size: 0.75rem;
-    color: #b1b1b1;
+    color: var(--txt-secondary);
 }
 
 .contact-last-msg {
     font-size: 0.8rem;
-    color: #b1b1b1;
+    color: var(--txt-secondary);
     margin-top: 0.2rem;
 }
 
 .contacts .alert-new-msg {
-    background-color: #8EDAFC;
+    background-color: var(--alert);
     padding: 1rem;
 }
 
@@ -133,7 +170,7 @@ img {
     height: 3rem;
     border-radius: 50%;
     margin-right: 0.5rem;
-    background-color: #fff;
+    background-color: var(--bell);
     text-align: center;
     line-height: 3rem;
     flex-shrink: 0;
@@ -144,23 +181,28 @@ img {
     font-family: 'Font Awesome 6 Free';
     font-size: 1.2rem;
     font-weight: 900;
-    color: #8EDAFC;
+    color: var(--alert);
 }
 
 .contacts .filter {
     padding: 1rem 2.5rem;
     font-size: 0.8rem;
-    color: #b1b1b1;
+    color: var(--icon);
     align-items: center;
 }
 .contacts .filter input {
     border: 0;
     flex-grow: 1;
     padding: 0.2rem;
+    background: var(--input-bkg);
+}
+
+.contacts .filter input::placeholder {
+    color: var(--input-placeholder);
 }
 
 .contacts .filter button {
-    color: #b1b1b1;
+    color: var(--icon);
     margin-right: 1rem;
 }
 
@@ -175,7 +217,7 @@ img {
 }
 
 .contacts li:hover, .contact-active {
-    background-color: #E9EBEB;
+    background-color: var(--li-hover);
     cursor: pointer;
 }
 
@@ -186,7 +228,7 @@ img {
 /* colonna messaggi */
 
 .msg {
-    background-image: url('../img/mine.jpg');
+    background: var(--msg-bkg);
     flex-grow: 1;
 }
 
@@ -197,7 +239,7 @@ img {
 }
 
 .msg .input-wrapper {
-    background-color: #fff;
+    background-color: var(--div-bkg);
     padding: 1rem;
     height: 4.5rem;
     align-items: center;
@@ -208,13 +250,18 @@ img {
     flex-grow: 1;
     padding: 0.5rem;
     border: 0;
+    background: var(--input-bkg);
+}
+
+.msg .input-wrapper input::placeholder{
+    color: var(--input-placeholder);
 }
 
 .msg .input-wrapper button {
     padding: 1rem;
     margin: 0.5rem;
     font-size: 1.5rem;
-    color: #b1b1b1;
+    color: var(--icon);
 }
 
 .msg .msg-txt {
@@ -232,29 +279,28 @@ img {
 
 .msg .msg-txt time {
     font-size: 0.7em;
-    color: #b1b1b1;
+    color: var(--icon);
     align-self: end;
     margin-top: 0.3rem;
 }
 
 .msg .in {
-    background-color: #fff;
+    background-color: var(--div-bkg);
     align-self: start;
 }
 
 .msg .out {
-    background-color: #D5F9BA;
+    background-color: var(--msg-out);
     align-self: end;
 }
 
 .msg .empty-msg {
     text-align: center;
-    color: #999;
+    color: var(--icon);
     font-size: 1.5rem;
     font-weight: 600;
     margin: auto;
     padding: 1rem;
-    background-color: #cccccc80;
     border-radius: 500px;
 }
 
@@ -263,19 +309,18 @@ img {
     right: 0.3rem;
     top: 0.5rem;
     font-size: 1.2rem;
-    color: #b1b1b1;
+    color: var(--icon);
     display: none;
     padding: 0.2rem;
 }
 
 .msg .msg-options {
     position: absolute;
-    right: 1rem;
+    right: 1.75rem;
     top: -2.5rem;
     padding: 0.5rem;
     font-size: 0.8rem;
-    color: #333;
-    background-color: #fff;
+    background-color: var(--div-bkg);
     border-radius: 0.5rem;
     box-shadow: 0 0 4px 4px #00000008;
     z-index: 10;
