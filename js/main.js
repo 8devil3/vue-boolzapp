@@ -5,7 +5,7 @@ const app = new Vue({
         activeIndexContact: null,
         activeMsgId: null,
         contactId: null,
-        sentMsg: '',
+
         user: {
             id: 'A1',
             name: "Sofia",
@@ -16,6 +16,7 @@ const app = new Vue({
                 id: '',
                 name: "michele",
                 avatar: "avatar_1.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -48,6 +49,7 @@ const app = new Vue({
                 id: '',
                 name: "fabio",
                 avatar: "avatar_2.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -80,6 +82,7 @@ const app = new Vue({
                 id: '',
                 name: "samuele",
                 avatar: "avatar_3.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -112,6 +115,7 @@ const app = new Vue({
                 id: '',
                 name: "alessandro b.",
                 avatar: "avatar_4.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -144,6 +148,7 @@ const app = new Vue({
                 id: '',
                 name: "alessandro l.",
                 avatar: "avatar_5.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -176,6 +181,7 @@ const app = new Vue({
                 id: '',
                 name: "claudia",
                 avatar: "avatar_6.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -208,6 +214,7 @@ const app = new Vue({
                 id: '',
                 name: "federico",
                 avatar: "avatar_7.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -240,6 +247,7 @@ const app = new Vue({
                 id: '',
                 name: "davide",
                 avatar: "avatar_8.jpg",
+                newMsg: '',
                 message: [
                     {
                         type: "in",
@@ -312,7 +320,7 @@ const app = new Vue({
                     dateTime: luxon.DateTime.now(),
                 });
     
-                this.sentMsg = '';
+                this.newMsg = '';
     
                 setTimeout(() => { //timeout risposta automatica
                     this.receivedMsg(indx);
