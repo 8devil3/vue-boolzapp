@@ -73,8 +73,23 @@ img {
     align-items: center;
     font-size: 1.5rem;
     color: #b1b1b1;
-    margin-left: 1rem;
+    padding: 0.5rem;
+    position: relative;
 }
+
+.header-icons .delete-chat {
+    position: absolute;
+    right: 4.2rem;
+    top: 3.2rem;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.8rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px 4px #00000008;
+    cursor: pointer;
+}
+
 
 
 
@@ -245,11 +260,12 @@ img {
 
 .msg .msg-options-dots {
     position: absolute;
-    right: 0.5rem;
+    right: 0.3rem;
     top: 0.5rem;
     font-size: 1.2rem;
     color: #b1b1b1;
     display: none;
+    padding: 0.2rem;
 }
 
 .msg .msg-options {

@@ -5,6 +5,8 @@ const app = new Vue({
         activeIndexContact: null,
         activeMsgId: null,
         contactId: null,
+        isNewMsgEmpty: false,
+        btnDeleteChat: false,
         user: {
             id: 'A1',
             name: "Sofia",
@@ -309,17 +311,21 @@ const app = new Vue({
 
         sendMsg(indx){ //invio messaggio
 
-            if (this.directory[indx].newMsg == '') { //controllo messaggio vuoto
-                //nulla
+            const newMsgSending = this.directory[indx].newMsg;
+
+            if (newMsgSending == '') { //controllo messaggio vuoto
+                this.isNewMsgEmpty = true;
             } else {
+                this.isNewMsgEmpty = false,
+
                 this.directory[indx].message.push({
                     idMsg: this.randomId(12),
                     type: 'out',
-                    text: this.directory[indx].newMsg,
+                    text: newMsgSending,
                     dateTime: luxon.DateTime.now(),
                 });
     
-                this.directory[indx].newMsg = '';
+                newMsgSending = '';
     
                 setTimeout(() => { //timeout risposta automatica
                     this.receivedMsg(indx);
@@ -341,6 +347,12 @@ const app = new Vue({
             this.directory[this.activeIndexContact].message.splice(i, 1);
 
             this.activeMsgId = null;
+        },
+
+        deleteChat(){
+            this.directory.splice(this.activeIndexContact, 1);
+
+            this.btnDeleteChat = null;
         },
 
         formatDate(dt){ //formatto data/ora con luxon

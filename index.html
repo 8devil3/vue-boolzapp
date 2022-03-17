@@ -82,7 +82,10 @@
                 <div class="header-icons row">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     <button><i class="fa-solid fa-paperclip"></i></button>
-                    <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <button><i class="fa-solid fa-ellipsis-vertical" @click="btnDeleteChat = true"></i></button>
+                    <div class="delete-chat" @click="deleteChat" v-show="btnDeleteChat">
+                        <i class="fa-solid fa-trash"></i> Elimina chat
+                    </div>
                 </div>
             </div>
 
