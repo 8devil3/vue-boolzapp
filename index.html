@@ -120,7 +120,8 @@
 
                 <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model.trim="sentMsg" @keyup.enter="sendMsg(sentMsg, activeIndexContact)">
 
-                <button><i class="fa-solid fa-microphone"></i></button>
+                <button v-if="sentMsg == ''"><i class="fa-solid fa-microphone"></i></button>
+                <button v-else @click="sendMsg(sentMsg, activeIndexContact)"><i class="fa-solid fa-paper-plane"></i></button>
 
             </div>
             <div v-else class="input-wrapper row"></div>
