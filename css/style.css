@@ -62,6 +62,7 @@ img {
     padding: 0.5rem 1rem;
     background-color: #EAEAEA;
     height: 4rem;
+    position: relative;
 }
 
 .header .avatar {
@@ -74,13 +75,12 @@ img {
     font-size: 1.5rem;
     color: #b1b1b1;
     padding: 0.5rem;
-    position: relative;
 }
 
 .header-icons .delete-chat {
     position: absolute;
-    right: 4.2rem;
-    top: 3.2rem;
+    right: 2.5rem;
+    top: 1.2rem;
     background-color: #fff;
     color: #333;
     font-size: 0.8rem;

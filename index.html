@@ -82,7 +82,7 @@
                 <div class="header-icons row">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     <button><i class="fa-solid fa-paperclip"></i></button>
-                    <button><i class="fa-solid fa-ellipsis-vertical" @click="btnDeleteChat = true"></i></button>
+                    <button><i class="fa-solid fa-ellipsis-vertical" @click="btnDeleteChat = !btnDeleteChat"></i></button>
                     <div class="delete-chat" @click="deleteChat" v-show="btnDeleteChat">
                         <i class="fa-solid fa-trash"></i> Elimina chat
                     </div>
@@ -119,10 +119,8 @@
             <!-- inserimento nuovo messaggio -->
             <div v-if="activeIndexContact != null" class="input-wrapper row">
 
-                <button><i class="fa-regular fa-face-smile"></i></button>
-
                 <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model.trim="directory[activeIndexContact].newMsg" @keyup.enter="sendMsg(activeIndexContact)">
-
+                
                 <button v-if="directory[activeIndexContact].newMsg == ''"><i class="fa-solid fa-microphone"></i></button>
                 <button v-else @click="sendMsg(activeIndexContact)"><i class="fa-solid fa-paper-plane"></i></button>
 
