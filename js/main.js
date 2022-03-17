@@ -8,11 +8,13 @@ const app = new Vue({
         isNewMsgEmpty: false,
         btnDeleteChat: false,
         root: null,
+        inputNewMsg: null,
         user: {
             id: 'A1',
             name: "Sofia",
             avatar: "avatar_io.jpg",
         },
+        currentChat: null,
         directory: [
             {
                 id: '',
@@ -291,11 +293,11 @@ const app = new Vue({
         },
 
         getChat(id){ //recupero la chat del contatto attivo
-            return this.directory.filter(msg => {
+            this.currentChat = this.directory.filter(msg => {
                 return msg.id == id;
-            }).sort((a, b) => {
-                return new Date(a.dateTime) - new Date(b.dateTime)
             });
+
+            return this.currentChat;
         },
         
         sortMsg(){ //riordino i messaggi per data
@@ -306,37 +308,36 @@ const app = new Vue({
             });
         },
         
-        getLastMsgTime(indx){ //recupero data/ora dell'ultimo messaggo del contatto selezionato
+        getLastMsgTime(indx){ //recupero data/ora dell'ultimo messaggo
             return this.directory[indx].message[this.directory[indx].message.length - 1].dateTime;
         },
 
-        sendMsg(indx){ //invio messaggio
+        sendNewMsg(){ //invio messaggio
 
-            const newMsgSending = this.directory[indx].newMsg;
+            let newMsgSending = this.currentChat[0].newMsg;
 
             if (newMsgSending == '') { //controllo messaggio vuoto
                 this.isNewMsgEmpty = true;
             } else {
                 this.isNewMsgEmpty = false,
 
-                this.directory[indx].message.push({
+                this.currentChat[0].message.push({
                     idMsg: this.randomId(12),
                     type: 'out',
                     text: newMsgSending,
                     dateTime: luxon.DateTime.now(),
                 });
     
-                newMsgSending = '';
+                this.currentChat[0].newMsg = '';
     
                 setTimeout(() => { //timeout risposta automatica
-                    this.receivedMsg(indx);
+                    this.receivedMsg();
                 }, 2000);
             }
-
         },
 
-        receivedMsg(indx){ //risposta automatica
-            this.directory[indx].message.push({
+        receivedMsg(){ //risposta automatica
+            this.currentChat[0].message.push({
                 idMsg: this.randomId(12),
                 type: 'in',
                 text: 'ok',
@@ -344,13 +345,13 @@ const app = new Vue({
             });
         },
 
-        deleteMsg(i){
+        deleteMsg(i){ //eliminazione messaggio singolo
             this.directory[this.activeIndexContact].message.splice(i, 1);
 
             this.activeMsgId = null;
         },
 
-        deleteChat(){
+        deleteChat(){ //eliminazione intera chat
             this.directory.splice(this.activeIndexContact, 1);
 
             this.btnDeleteChat = null;
@@ -366,11 +367,11 @@ const app = new Vue({
             }
         },
 
-        setDarkMode(){
+        setDarkMode(){ //dark mode
             this.root.classList.toggle('dark-mode')
         },
 
-        setFontSize(fs) {
+        setFontSize(fs) { //scelta dimensione font
 
             switch (fs) {
                 case 'small':
@@ -414,11 +415,12 @@ const app = new Vue({
             });
         }
     },
-    created() { //l'app inizia riordinando i messaggi per data/ora
+    created() { //l'app inizia riordinando i messaggi per data/ora e assegnado ID casuali
         this.sortMsg();
         this.setRandomId();
     },
     mounted() {
         this.root = document.documentElement;
+        this.inputNewMsg = this.root.querySelector('#inputNewMsg');
     }
 });

@@ -60,11 +60,13 @@
                         <img :src="'img/' + contact.avatar" :alt="contact.name">
                         <div>
                             <p class="contact-name">{{ contact.name }}</p>
-                            <p class="contact-last-msg">{{ contact.message[contact.message.length -1].text }}</p>
+                            <p v-if="contact.message.length != 0" class="contact-last-msg">{{ contact.message[contact.message.length -1].text }}</p>
+                            <p v-else class="contact-last-msg">chat vuota</p>
                         </div>
                     </div>
 
-                    <time>{{ formatDate(getLastMsgTime(index)) }}</time>
+                    <time v-if="contact.message.length != 0">{{ formatDate(getLastMsgTime(index)) }}</time>
+                    <time v-else></time>
                 </li>
             </ul>
             <!-- / -->
@@ -80,7 +82,9 @@
                     <img :src="'img/' + directory[activeIndexContact].avatar" :alt="directory[activeIndexContact].name">
                     <div>
                         <p class="contact-name">{{ directory[activeIndexContact].name }}</p>
-                        <p class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
+                        <p v-if="currentChat[0].message.length != 0" class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
+
+                        <p class="contact-last-msg" v-else>Chat vuota</p>
                     </div>
                 </div>
                 <div class="header-icons row">
@@ -99,7 +103,9 @@
             <!-- elenco messaggi -->
             <div v-if="activeIndexContact != null" class="msg-list column">
 
-                <div class="msg-txt contact-msg column" v-if="directory[activeIndexContact].message.length != 0" v-for="(msg, i) in directory[activeIndexContact].message" :class="msg.type == 'in' ? 'in' : 'out'" >
+                <p class="empty-msg" v-if="currentChat[0].message.length == 0">Chat vuota</p>
+                
+                <div class="msg-txt contact-msg column" v-else v-for="(msg, i) in directory[activeIndexContact].message" :class="msg.type == 'in' ? 'in' : 'out'" >
 
                     <p>{{ msg.text }}</p>
                     <time>{{ formatDate(msg.dateTime) }}</time>
@@ -110,9 +116,7 @@
                         <li><i class="fa-solid fa-circle-info"></i>Info</li>
                         <li @click="deleteMsg(i)"><i class="fa-solid fa-trash"></i>Elimina</li>
                     </ul>
-                </div>
-
-                <p class="empty-msg" v-else>Chat vuota</p>
+                </div>              
 
             </div>
             <div v-else class="msg-list column">
@@ -125,10 +129,10 @@
                 
                 <button><i class="fa-regular fa-face-smile"></i></button>
 
-                <input type="text" id="inputMsg" placeholder="Scrivi un messaggio" v-model.trim="directory[activeIndexContact].newMsg" @keyup.enter="sendMsg(activeIndexContact)">
+                <input type="text" id="inputNewMsg" placeholder="Scrivi un messaggio" v-model.trim="currentChat[0].newMsg" @keyup.enter="sendNewMsg">
                 
-                <button v-if="directory[activeIndexContact].newMsg == ''"><i class="fa-solid fa-microphone"></i></button>
-                <button v-else @click="sendMsg(activeIndexContact)"><i class="fa-solid fa-paper-plane"></i></button>
+                <button v-if="currentChat[0].newMsg == ''"><i class="fa-solid fa-microphone"></i></button>
+                <button v-else @click="sendNewMsg"><i class="fa-solid fa-paper-plane"></i></button>
 
             </div>
             <div v-else class="input-wrapper row"></div>
