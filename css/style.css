@@ -121,10 +121,13 @@ img {
     background-color: var(--div-bkg);
     color: var(--txt);
     font-size: 0.8rem;
-    padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 4px 4px #00000008;
     cursor: pointer;
+}
+
+.header-icons .delete-chat li {
+    padding: 0.5rem;
 }
 
 

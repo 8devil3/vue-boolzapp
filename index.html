@@ -90,10 +90,12 @@
                 <div class="header-icons row">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     <button><i class="fa-solid fa-paperclip"></i></button>
-                    <button><i class="fa-solid fa-ellipsis-vertical" @click="btnDeleteChat = !btnDeleteChat"></i></button>
-                    <div class="delete-chat" @click="deleteChat" v-show="btnDeleteChat">
-                        <i class="fa-solid fa-trash"></i> Elimina chat
-                    </div>
+                    <button @click="btnDeleteChat = !btnDeleteChat"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+
+                    <ul v-show="btnDeleteChat" class="delete-chat">
+                        <li @click="deleteAllMsg"><i class="fa-solid fa-trash"></i> Elimina tutti i messaggi</li>
+                        <li @click="deleteChat"><i class="fa-solid fa-trash"></i> Elimina l'intera chat</li>
+                    </ul>
                 </div>
             </div>
 
@@ -103,7 +105,7 @@
             <!-- elenco messaggi -->
             <div v-if="activeIndexContact != null" class="msg-list column">
 
-                <p class="empty-msg" v-if="currentChat[0].message.length == 0">Chat vuota</p>
+                <p class="empty-msg" v-if="currentChat[0].message.length == 0">chat vuota</p>
                 
                 <div class="msg-txt contact-msg column" v-else v-for="(msg, i) in directory[activeIndexContact].message" :class="msg.type == 'in' ? 'in' : 'out'" >
 

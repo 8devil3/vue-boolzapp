@@ -346,14 +346,18 @@ const app = new Vue({
         },
 
         deleteMsg(i){ //eliminazione messaggio singolo
-            this.directory[this.activeIndexContact].message.splice(i, 1);
-
+            this.currentChat[0].message.splice(i, 1);
             this.activeMsgId = null;
         },
 
+        deleteAllMsg(){ //eliminazione messaggio singolo
+            this.currentChat[0].message = [];
+            this.activeMsgId = null;
+            this.btnDeleteChat = null;
+        },
+        
         deleteChat(){ //eliminazione intera chat
             this.directory.splice(this.activeIndexContact, 1);
-
             this.btnDeleteChat = null;
         },
 
