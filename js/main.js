@@ -301,18 +301,24 @@ const app = new Vue({
         },
 
         sendMsg(txt, indx){ //invio messaggio
-            this.directory[indx].message.push({
-                idMsg: this.randomId(12),
-                type: 'out',
-                text: txt,
-                dateTime: luxon.DateTime.now(),
-            });
 
-            this.sentMsg = '';
+            if (txt == '') { //controllo messaggio vuoto
+                //nulla
+            } else {
+                this.directory[indx].message.push({
+                    idMsg: this.randomId(12),
+                    type: 'out',
+                    text: txt,
+                    dateTime: luxon.DateTime.now(),
+                });
+    
+                this.sentMsg = '';
+    
+                setTimeout(() => { //timeout risposta automatica
+                    this.receivedMsg(indx);
+                }, 2000);
+            }
 
-            setTimeout(() => { //timeout risposta automatica
-                this.receivedMsg(indx);
-            }, 2000);
         },
 
         receivedMsg(indx){ //risposta automatica

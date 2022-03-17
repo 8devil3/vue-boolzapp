@@ -267,6 +267,7 @@ img {
 
 .msg .msg-options li {
     padding: 0.3rem 0;
+    cursor: pointer;
 }
 
 .msg .msg-options li i {
