@@ -5,7 +5,6 @@ const app = new Vue({
         activeIndexContact: null,
         activeMsgId: null,
         contactId: null,
-
         user: {
             id: 'A1',
             name: "Sofia",
@@ -308,19 +307,19 @@ const app = new Vue({
             return this.directory[indx].message[this.directory[indx].message.length - 1].dateTime;
         },
 
-        sendMsg(txt, indx){ //invio messaggio
+        sendMsg(indx){ //invio messaggio
 
-            if (txt == '') { //controllo messaggio vuoto
+            if (this.directory[indx].newMsg == '') { //controllo messaggio vuoto
                 //nulla
             } else {
                 this.directory[indx].message.push({
                     idMsg: this.randomId(12),
                     type: 'out',
-                    text: txt,
+                    text: this.directory[indx].newMsg,
                     dateTime: luxon.DateTime.now(),
                 });
     
-                this.newMsg = '';
+                this.directory[indx].newMsg = '';
     
                 setTimeout(() => { //timeout risposta automatica
                     this.receivedMsg(indx);
