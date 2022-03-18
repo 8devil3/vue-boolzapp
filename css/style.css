@@ -140,6 +140,45 @@ img {
     padding: 0.5rem;
 }
 
+.new-contact-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--div-bkg);
+    border-radius: 1rem;
+    box-shadow: 0 0 4px 4px #00000040;
+    padding: 1rem;
+    z-index: 20;
+}
+
+.new-contact-wrapper .title {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.new-contact-wrapper > *:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.new-contact-wrapper input{
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    border: 1px var(--input-placeholder) solid;
+    border-radius: 0.25rem;
+}
+
+.new-contact-wrapper input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.new-contact-wrapper button {
+    background-color: var(--body-bkg-2);
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
 
 
 

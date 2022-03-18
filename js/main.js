@@ -7,8 +7,10 @@ const app = new Vue({
         contactId: null,
         isNewMsgEmpty: false,
         btnDeleteChat: false,
+        btnNewContact: false,
+        newContactAvatar: '',
+        newContactName: '',
         root: null,
-        inputNewMsg: null,
         user: {
             name: "Sofia",
             avatar: "avatar_io.jpg",
@@ -381,6 +383,22 @@ const app = new Vue({
         deleteChat(){ //eliminazione intera chat
             this.directory.splice(this.activeIndexContact, 1);
             this.btnDeleteChat = null;
+        },
+
+        addNewContact(){
+            this.directory.unshift({
+                avatar: this.newContactAvatar,
+                id: this.randomId(8),
+                isOnlineNow:false,
+                isWriting:false,
+                message: [],
+                name: this.newContactName,
+                newMsg: '',
+            });
+
+            this.newContactAvatar = '';
+            this.newContactName = '';
+            this.btnNewContact = false;
         },
 
         formatDate(dt){ //formatto data/ora con luxon
