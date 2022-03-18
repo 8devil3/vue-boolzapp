@@ -464,6 +464,5 @@ const app = new Vue({
     },
     mounted() {
         this.root = document.documentElement;
-        this.inputNewMsg = this.root.querySelector('#inputNewMsg');
     }
 });
