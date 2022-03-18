@@ -86,7 +86,7 @@
 
                     <time v-if="contact.isWriting">Sta digitando...</time>
                     <time v-else-if="contact.isOnlineNow">Online</time>
-                    <time v-else-if="contact.message.length != 0">{{ formatDate(getLastMsgTime(index)) }}</time>
+                    <time v-else-if="contact.message.length != 0">{{ formatDate(contact.message[contact.message.length -1].dateTime) }}</time>
                     <time v-else></time>
                 </li>
             </ul>
@@ -107,7 +107,7 @@
 
                         <p v-if="currentChat[0].isWriting" class="contact-last-msg">Sta digitando...</p>
                         <p v-else-if="currentChat[0].isOnlineNow" class="contact-last-msg">Online</p>
-                        <p v-else-if="currentChat[0].message.length != 0" class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
+                        <p v-else-if="currentChat[0].message.length != 0" class="contact-last-msg">Ultimo accesso {{ formatDate(currentChat[0].message[currentChat[0].message.length -1].dateTime) }}</p>
                         <p v-else class="contact-last-msg">Chat vuota</p>
                     </div>
                 </div>

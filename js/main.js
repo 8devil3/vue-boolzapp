@@ -326,10 +326,6 @@ const app = new Vue({
                 });
             });
         },
-        
-        getLastMsgTime(indx){ //recupero data/ora dell'ultimo messaggo
-            return this.directory[indx].message[this.directory[indx].message.length - 1].dateTime;
-        },
 
         sendNewMsg(){ //invio messaggio
 
