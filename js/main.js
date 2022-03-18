@@ -391,6 +391,8 @@ const app = new Vue({
         
         deleteChat(){ //eliminazione intera chat
             this.directory.splice(this.activeIndexContact, 1);
+            this.currentChat = null;
+            this.activeIndexContact = null;
             this.btnDeleteChat = null;
         },
 
