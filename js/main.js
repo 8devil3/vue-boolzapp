@@ -314,6 +314,8 @@ const app = new Vue({
                 return msg.id == id;
             });
 
+            this.scrollToLastMsg();
+
             return this.currentChat;
         },
         
@@ -342,14 +344,24 @@ const app = new Vue({
                     text: this.currentChat[0].newMsg,
                     dateTime: luxon.DateTime.now(),
                 });
-    
+
+                
                 this.currentChat[0].newMsg = '';
                 this.currentChat[0].isWriting = true;
-    
+
+                this.scrollToLastMsg();
+                
                 setTimeout(() => { //timeout risposta automatica
                     this.receivedMsg();
                 }, 2000);
+
             }
+        },
+
+        scrollToLastMsg(){
+            Vue.nextTick(() => { //scroll all'ultimo messaggio
+                this.$refs.msgBox.scrollTop = this.$refs.msgBox.scrollHeight + 48;
+            });
         },
 
         receivedMsg(){ //risposta automatica
@@ -362,7 +374,8 @@ const app = new Vue({
             this.currentChat[0].isWriting = false;
             this.currentChat[0].isOnlineNow = true;
 
-            
+            this.scrollToLastMsg();
+
             setTimeout(() => {
                 this.currentChat[0].isOnlineNow = false;
             }, 2000);
@@ -462,6 +475,7 @@ const app = new Vue({
         this.sortMsg();
         this.setRandomId();
     },
+
     mounted() {
         this.root = document.documentElement;
     }

@@ -126,7 +126,7 @@
             <!-- / -->
 
             <!-- elenco messaggi -->
-            <div v-if="activeIndexContact != null" class="msg-list column">
+            <div v-if="activeIndexContact != null" class="msg-list column" ref="msgBox">
 
                 <p class="empty-msg" v-if="currentChat[0].message.length == 0">Chat vuota</p>
                 
