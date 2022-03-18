@@ -10,7 +10,6 @@ const app = new Vue({
         root: null,
         inputNewMsg: null,
         user: {
-            id: 'A1',
             name: "Sofia",
             avatar: "avatar_io.jpg",
         },
@@ -21,6 +20,8 @@ const app = new Vue({
                 name: "michele",
                 avatar: "avatar_1.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -54,6 +55,8 @@ const app = new Vue({
                 name: "fabio",
                 avatar: "avatar_2.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -87,6 +90,8 @@ const app = new Vue({
                 name: "samuele",
                 avatar: "avatar_3.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -120,6 +125,8 @@ const app = new Vue({
                 name: "alessandro b.",
                 avatar: "avatar_4.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -153,6 +160,8 @@ const app = new Vue({
                 name: "alessandro l.",
                 avatar: "avatar_5.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -186,6 +195,8 @@ const app = new Vue({
                 name: "claudia",
                 avatar: "avatar_6.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -219,6 +230,8 @@ const app = new Vue({
                 name: "federico",
                 avatar: "avatar_7.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -252,6 +265,8 @@ const app = new Vue({
                 name: "davide",
                 avatar: "avatar_8.jpg",
                 newMsg: '',
+                isWriting: false,
+                isOnlineNow: false,
                 message: [
                     {
                         type: "in",
@@ -314,9 +329,7 @@ const app = new Vue({
 
         sendNewMsg(){ //invio messaggio
 
-            let newMsgSending = this.currentChat[0].newMsg;
-
-            if (newMsgSending == '') { //controllo messaggio vuoto
+            if (this.currentChat[0].newMsg == '') { //controllo messaggio vuoto
                 this.isNewMsgEmpty = true;
             } else {
                 this.isNewMsgEmpty = false,
@@ -324,11 +337,12 @@ const app = new Vue({
                 this.currentChat[0].message.push({
                     idMsg: this.randomId(12),
                     type: 'out',
-                    text: newMsgSending,
+                    text: this.currentChat[0].newMsg,
                     dateTime: luxon.DateTime.now(),
                 });
     
                 this.currentChat[0].newMsg = '';
+                this.currentChat[0].isWriting = true;
     
                 setTimeout(() => { //timeout risposta automatica
                     this.receivedMsg();
@@ -343,6 +357,14 @@ const app = new Vue({
                 text: 'ok',
                 dateTime: luxon.DateTime.now(),
             });
+            this.currentChat[0].isWriting = false;
+            this.currentChat[0].isOnlineNow = true;
+
+            
+            setTimeout(() => {
+                this.currentChat[0].isOnlineNow = false;
+            }, 2000);
+
         },
 
         deleteMsg(i){ //eliminazione messaggio singolo
@@ -408,7 +430,6 @@ const app = new Vue({
             //random ID per gli utenti (8 caratteri)
             this.directory.forEach((element) => {
                 element.id = this.randomId(8);
-
             });
 
             //random ID per i messaggi (12 caratteri)

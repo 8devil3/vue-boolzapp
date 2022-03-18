@@ -63,11 +63,13 @@
                         <div>
                             <p class="contact-name">{{ contact.name }}</p>
                             <p v-if="contact.message.length != 0" class="contact-last-msg">{{ contact.message[contact.message.length -1].text }}</p>
-                            <p v-else class="contact-last-msg">chat vuota</p>
+                            <p v-else class="contact-last-msg">Chat vuota</p>
                         </div>
                     </div>
 
-                    <time v-if="contact.message.length != 0">{{ formatDate(getLastMsgTime(index)) }}</time>
+                    <time v-if="contact.isWriting">Sta digitando...</time>
+                    <time v-else-if="contact.isOnlineNow">Online</time>
+                    <time v-else-if="contact.message.length != 0">{{ formatDate(getLastMsgTime(index)) }}</time>
                     <time v-else></time>
                 </li>
             </ul>
@@ -81,12 +83,14 @@
             <!-- intestazione utente selezionato -->
             <div v-if="activeIndexContact != null" class="header row">
                 <div class="avatar row">
-                    <img :src="'img/' + directory[activeIndexContact].avatar" :alt="directory[activeIndexContact].name">
+                    <img :src="'img/' + currentChat[0].avatar" :alt="currentChat[0].name">
                     <div>
-                        <p class="contact-name">{{ directory[activeIndexContact].name }}</p>
-                        <p v-if="currentChat[0].message.length != 0" class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
+                        <p class="contact-name">{{ currentChat[0].name }}</p>
 
-                        <p class="contact-last-msg" v-else>Chat vuota</p>
+                        <p v-if="currentChat[0].isWriting" class="contact-last-msg">Sta digitando...</p>
+                        <p v-else-if="currentChat[0].isOnlineNow" class="contact-last-msg">Online</p>
+                        <p v-else-if="currentChat[0].message.length != 0" class="contact-last-msg">Ultimo accesso {{ formatDate(getLastMsgTime(activeIndexContact)) }}</p>
+                        <p v-else class="contact-last-msg">Chat vuota</p>
                     </div>
                 </div>
                 <div class="header-icons row">
@@ -107,9 +111,9 @@
             <!-- elenco messaggi -->
             <div v-if="activeIndexContact != null" class="msg-list column">
 
-                <p class="empty-msg" v-if="currentChat[0].message.length == 0">chat vuota</p>
+                <p class="empty-msg" v-if="currentChat[0].message.length == 0">Chat vuota</p>
                 
-                <div class="msg-txt contact-msg column" v-else v-for="(msg, i) in directory[activeIndexContact].message" :class="msg.type == 'in' ? 'in' : 'out'" >
+                <div class="msg-txt contact-msg column" v-else v-for="(msg, i) in currentChat[0].message" :class="msg.type == 'in' ? 'in' : 'out'" >
 
                     <p>{{ msg.text }}</p>
                     <time>{{ formatDate(msg.dateTime) }}</time>
