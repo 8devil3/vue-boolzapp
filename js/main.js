@@ -360,7 +360,7 @@ const app = new Vue({
 
         scrollToLastMsg(){
             Vue.nextTick(() => { //scroll all'ultimo messaggio
-                this.$refs.msgBox.scrollTop = this.$refs.msgBox.scrollHeight + 48;
+                this.$refs.msgBox.scrollTop = this.$refs.msgBox.scrollHeight;
             });
         },
 
