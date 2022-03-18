@@ -19,12 +19,12 @@
         <div class="contacts column">
 
             <!-- intestazione utente -->
-            <div class="header row">
-                <div class="avatar row">
+            <div class="header row align-center">
+                <div class="avatar row align-center">
                     <img :src="'img/' + user.avatar" :alt="user.name">
                     <p class="contact-name">{{ user.name }}</p>
                 </div>
-                <div class="header-icons row">
+                <div class="header-icons row align-center">
                     <button @click="setFontSize('small')" style="font-size: 13px" title="Dimensione font ridotta">A</button>
                     <button @click="setFontSize('default')" style="font-size: 16px" title="Dimensione font normale">A</button>
                     <button @click="setFontSize('large')" style="font-size: 20px" title="Dimensione font ingrandita">A</button>
@@ -52,7 +52,7 @@
             <!-- / -->
 
             <!-- richiesta notifiche -->
-            <div class="alert-new-msg row">
+            <div class="alert-new-msg row align-center">
                 <div class="bell"></div>
                 <div>
                     <p>Ricevi notifiche di nuovi messaggi</p>
@@ -62,7 +62,7 @@
             <!-- / -->
 
             <!-- filtro contatti -->
-            <div class="filter row">
+            <div class="filter row align-center">
                 <button id="btnFilter"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <input type="text" id="input-filter" placeholder="Cerca o inizia una nuova chat" v-model.trim="searchContact">
             </div>
@@ -72,11 +72,12 @@
             <p class="empty-msg" v-if="directory.length == 0">Lista contatti vuota</p>
 
             <ul v-else>
-                <li class="row" v-for="(contact, index) in filterList(searchContact)" @click="activeIndexContact = index, contactId = contact.id, getChat(contact.id)" :class="{'contact-active':activeIndexContact == index}">
-                    <div class="row">
+                <li class="row align-center" v-for="(contact, index) in filterList(searchContact)" @click="activeIndexContact = index, contactId = contact.id, getChat(contact.id)" :class="{'contact-active':activeIndexContact == index}">
+                    <div class="row align-center">
                         <img v-if="contact.avatar.match('http')" :src="contact.avatar" :alt="contact.name">
                         <img v-else :src="'img/' + contact.avatar" :alt="contact.name">
-                        <div>
+                        <div class="column">
+                            <p class="contact-last-msg">ID: {{ contact.id }}</p>
                             <p class="contact-name">{{ contact.name }}</p>
                             <p v-if="contact.message.length != 0" class="contact-last-msg">{{ contact.message[contact.message.length -1].text }}</p>
                             <p v-else class="contact-last-msg">Chat vuota</p>
@@ -97,8 +98,8 @@
         <div class="msg column">
 
             <!-- intestazione utente selezionato -->
-            <div v-if="activeIndexContact != null" class="header row">
-                <div class="avatar row">
+            <div v-if="activeIndexContact != null" class="header row align-center">
+                <div class="avatar row align-center">
                     <img v-if="currentChat[0].avatar.match('http')" :src="currentChat[0].avatar" :alt="currentChat[0].name">
                     <img v-else :src="'img/' + currentChat[0].avatar" :alt="currentChat[0].name">
                     <div>
@@ -110,7 +111,7 @@
                         <p v-else class="contact-last-msg">Chat vuota</p>
                     </div>
                 </div>
-                <div class="header-icons row">
+                <div class="header-icons row align-center">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     <button><i class="fa-solid fa-paperclip"></i></button>
                     <button @click="btnDeleteChat = !btnDeleteChat"><i class="fa-solid fa-ellipsis-vertical"></i></button>
@@ -150,7 +151,7 @@
             <!-- / -->
 
             <!-- inserimento nuovo messaggio -->
-            <div v-if="activeIndexContact != null" class="input-wrapper row">
+            <div v-if="activeIndexContact != null" class="input-wrapper row align-center">
                 
                 <button><i class="fa-regular fa-face-smile"></i></button>
 
@@ -160,7 +161,7 @@
                 <button v-else @click="sendNewMsg"><i class="fa-solid fa-paper-plane"></i></button>
 
             </div>
-            <div v-else class="input-wrapper row"></div>
+            <div v-else class="input-wrapper row align-center"></div>
             <!-- / -->
         </div>
         <!-- / -->

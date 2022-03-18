@@ -18,7 +18,7 @@
     --alert: #8EDAFC;
     --bell: #fff;
     --msg-out: #D5F9BA;
-    --msg-in: #fff;
+    --msg-in: #eee;
     --msg-bkg: url('../img/mine.jpg');
     --input-bkg: #fff;
     --input-placeholder: #333;
@@ -36,7 +36,7 @@
     --alert: #45788f;
     --bell: #eee;
     --msg-out: #749958;
-    --msg-in: #b1b1b1;
+    --msg-in: #999;
     --msg-bkg: #666;
     --input-bkg: #333;
     --input-placeholder: #eee;
@@ -60,11 +60,16 @@ ul {
 
 .row {
     display: flex;
+    flex-direction: row;
 }
 
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
 }
 
 main {
@@ -105,20 +110,13 @@ img {
 
 .header {
     justify-content: space-between;
-    align-items: center;
     padding: 0.5rem 1rem;
     background-color: var(--header-bkg);
     height: 4rem;
     position: relative;
 }
 
-.header .avatar {
-    align-items: center;
-}
-
 .header-icons button {
-    justify-content: space-between;
-    align-items: center;
     font-size: 1.5rem;
     color: var(--icon);
     padding: 0.5rem;
@@ -239,7 +237,6 @@ img {
     padding: 1rem 2.5rem;
     font-size: 0.8rem;
     color: var(--icon);
-    align-items: center;
 }
 .contacts .filter input {
     border: 0;
@@ -293,7 +290,6 @@ img {
     background-color: var(--div-bkg);
     padding: 1rem;
     height: 4.5rem;
-    align-items: center;
 }
 
 .msg .input-wrapper input {
@@ -336,7 +332,7 @@ img {
 }
 
 .msg .in {
-    background-color: var(--div-bkg);
+    background-color: var(--msg-in);
     align-self: start;
 }
 
