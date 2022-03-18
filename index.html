@@ -54,7 +54,9 @@
             <!-- / -->
 
             <!-- lista contatti -->
-            <ul>
+            <p class="empty-msg" vi-if="directroy.length == 0">Lista contatti vuota</p>
+
+            <ul v-else>
                 <li class="row" v-for="(contact, index) in filterList(searchContact)" @click="activeIndexContact = index, contactId = contact.id, getChat(contact.id)" :class="{'contact-active':activeIndexContact == index}">
                     <div class="row">
                         <img :src="'img/' + contact.avatar" :alt="contact.name">

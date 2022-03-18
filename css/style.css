@@ -88,6 +88,16 @@ img {
     margin-right: 0.5rem;
 }
 
+.empty-msg {
+    text-align: center;
+    color: var(--icon);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 500px;
+}
+
 
 
 
@@ -294,16 +304,6 @@ img {
 .msg .out {
     background-color: var(--msg-out);
     align-self: end;
-}
-
-.msg .empty-msg {
-    text-align: center;
-    color: var(--icon);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: auto;
-    padding: 1rem;
-    border-radius: 500px;
 }
 
 .msg .msg-options-dots {
