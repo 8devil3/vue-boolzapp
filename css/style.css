@@ -243,6 +243,7 @@ img {
     flex-grow: 1;
     padding: 0.2rem;
     background: var(--input-bkg);
+    color: var(--txt-primary);
 }
 
 .contacts .filter input::placeholder {
@@ -298,6 +299,7 @@ img {
     padding: 0.5rem;
     border: 0;
     background: var(--input-bkg);
+    color: var(--txt-primary);
 }
 
 .msg .input-wrapper input::placeholder{
